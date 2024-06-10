@@ -56,7 +56,7 @@ namespace WebApi83.Services.Services
         public async Task<Response<bool>> EliminarAutor(int pkAutor)
         {
             try
-            {
+             {
                 var result = await _context.Database.GetDbConnection()
                                .ExecuteAsync("spEliminarAutor", new { pkAutor }, commandType: CommandType.StoredProcedure);
 

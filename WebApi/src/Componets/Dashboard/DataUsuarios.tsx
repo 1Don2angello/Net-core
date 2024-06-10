@@ -163,154 +163,154 @@ export default function DataGridDemo() {
     }
   }, [rows]);
 
-  return (
-    <Box
-      sx={{ padding: "2rem", backgroundColor: "#f5f5f5", minHeight: "100vh" }}
-    >
-      <Paper sx={{ padding: "2rem", backgroundColor: "#fff", boxShadow: 3 }}>
-        {loading ? (
-          <Typography variant="h6" color="error" sx={{ marginBottom: "1rem" }}>
-            Cargando datos...
-          </Typography>
-        ) : (
-          dataLoaded && (
-            <Typography
-              variant="h6"
-              color="success"
-              sx={{ marginBottom: "1rem" }}
-            >
-              Datos cargados correctamente
-            </Typography>
-          )
-        )}
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ marginBottom: "1rem" }}
-          onClick={handleOpenAdd}
-        >
-          Agregar Autor
-        </Button>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          getRowId={(row) => row.pkUsuario}
-          autoHeight
-          sx={{
-            "& .MuiDataGrid-root": {
-              border: "none",
-            },
-            "& .MuiDataGrid-cell": {
-              borderBottom: "1px solid #e0e0e0",
-            },
-            "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: "#e0e0e0",
-              borderBottom: "1px solid #e0e0e0",
-            },
-            "& .MuiDataGrid-columnHeaderTitle": {
-              fontWeight: "bold",
-              color: "#333",
-            },
-            "& .MuiDataGrid-row": {
-              "&:nth-of-type(odd)": {
-                backgroundColor: "#fafafa",
-              },
-            },
-            "& .MuiDataGrid-footerContainer": {
-              justifyContent: "center",
-              padding: "1rem",
-              backgroundColor: "#e0e0e0",
-              borderTop: "1px solid #e0e0e0",
-            },
-          }}
-        />
-      </Paper>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Editar Autor</DialogTitle>
-        <DialogContent>
-          <TextField
-            margin="dense"
-            label="Nombre"
-            type="text"
-            fullWidth
-            variant="outlined"
-            value={currentAutor?.nombre || ""}
-            onChange={(e) =>
-              setCurrentAutor({ ...currentAutor, nombre: e.target.value })
-            }
-          />
-          <TextField
-            margin="dense"
-            label="Usuario"
-            type="text"
-            fullWidth
-            variant="outlined"
-            value={currentAutor?.usuario || ""}
-            onChange={(e) =>
-              setCurrentAutor({ ...currentAutor, usuario: e.target.value })
-            }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={handleSave} color="primary">
-            Guardar
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog open={openConfirm} onClose={handleCloseConfirm}>
-        <DialogTitle>Confirmar Eliminación</DialogTitle>
-        <DialogContent>
-          <Typography>
-            ¿Estás seguro de que deseas eliminar este autor?
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseConfirm} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={handleDelete} color="secondary">
-            Eliminar
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog open={openAdd} onClose={handleCloseAdd}>
-        <DialogTitle>Agregar Autor</DialogTitle>
-        <DialogContent>
-          <TextField
-            margin="dense"
-            label="Nombre"
-            type="text"
-            fullWidth
-            variant="outlined"
-            value={newAutor.nombre}
-            onChange={(e) =>
-              setNewAutor({ ...newAutor, nombre: e.target.value })
-            }
-          />
-          <TextField
-            margin="dense"
-            label="Usuario"
-            type="text"
-            fullWidth
-            variant="outlined"
-            value={newAutor.usuario}
-            onChange={(e) =>
-              setNewAutor({ ...newAutor, usuario: e.target.value })
-            }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseAdd} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={handleAdd} color="primary">
-            Agregar
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
-  );
+  // return (
+  //   <Box
+  //     sx={{ padding: "2rem", backgroundColor: "#f5f5f5", minHeight: "100vh" }}
+  //   >
+  //     <Paper sx={{ padding: "2rem", backgroundColor: "#fff", boxShadow: 3 }}>
+  //       {loading ? (
+  //         <Typography variant="h6" color="error" sx={{ marginBottom: "1rem" }}>
+  //           Cargando datos...
+  //         </Typography>
+  //       ) : (
+  //         dataLoaded && (
+  //           <Typography
+  //             variant="h6"
+  //             color="success"
+  //             sx={{ marginBottom: "1rem" }}
+  //           >
+  //              Usuario: Datos cargados
+  //           </Typography>
+  //         )
+  //       )}
+  //       <Button
+  //         variant="contained"
+  //         color="primary"
+  //         sx={{ marginBottom: "1rem" }}
+  //         onClick={handleOpenAdd}
+  //       >
+  //         Agregar Usuario
+  //       </Button>
+  //       <DataGrid
+  //         rows={rows}
+  //         columns={columns}
+  //         getRowId={(row) => row.pkUsuario}
+  //         autoHeight
+  //         sx={{
+  //           "& .MuiDataGrid-root": {
+  //             border: "none",
+  //           },
+  //           "& .MuiDataGrid-cell": {
+  //             borderBottom: "1px solid #e0e0e0",
+  //           },
+  //           "& .MuiDataGrid-columnHeaders": {
+  //             backgroundColor: "#e0e0e0",
+  //             borderBottom: "1px solid #e0e0e0",
+  //           },
+  //           "& .MuiDataGrid-columnHeaderTitle": {
+  //             fontWeight: "bold",
+  //             color: "#333",
+  //           },
+  //           "& .MuiDataGrid-row": {
+  //             "&:nth-of-type(odd)": {
+  //               backgroundColor: "#fafafa",
+  //             },
+  //           },
+  //           "& .MuiDataGrid-footerContainer": {
+  //             justifyContent: "center",
+  //             padding: "1rem",
+  //             backgroundColor: "#e0e0e0",
+  //             borderTop: "1px solid #e0e0e0",
+  //           },
+  //         }}
+  //       />
+  //     </Paper>
+  //     <Dialog open={open} onClose={handleClose}>
+  //       <DialogTitle>Editar Usuario</DialogTitle>
+  //       <DialogContent>
+  //         <TextField
+  //           margin="dense"
+  //           label="Nombre"
+  //           type="text"
+  //           fullWidth
+  //           variant="outlined"
+  //           value={currentAutor?.nombre || ""}
+  //           onChange={(e) =>
+  //             setCurrentAutor({ ...currentAutor, nombre: e.target.value })
+  //           }
+  //         />
+  //         <TextField
+  //           margin="dense"
+  //           label="Usuario"
+  //           type="text"
+  //           fullWidth
+  //           variant="outlined"
+  //           value={currentAutor?.usuario || ""}
+  //           onChange={(e) =>
+  //             setCurrentAutor({ ...currentAutor, usuario: e.target.value })
+  //           }
+  //         />
+  //       </DialogContent>
+  //       <DialogActions>
+  //         <Button onClick={handleClose} color="primary">
+  //           Cancelar
+  //         </Button>
+  //         <Button onClick={handleSave} color="primary">
+  //           Guardar
+  //         </Button>
+  //       </DialogActions>
+  //     </Dialog>
+  //     <Dialog open={openConfirm} onClose={handleCloseConfirm}>
+  //       <DialogTitle>Confirmar Eliminación</DialogTitle>
+  //       <DialogContent>
+  //         <Typography>
+  //           ¿Estás seguro de que deseas eliminar este autor?
+  //         </Typography>
+  //       </DialogContent>
+  //       <DialogActions>
+  //         <Button onClick={handleCloseConfirm} color="primary">
+  //           Cancelar
+  //         </Button>
+  //         <Button onClick={handleDelete} color="secondary">
+  //           Eliminar
+  //         </Button>
+  //       </DialogActions>
+  //     </Dialog>
+  //     <Dialog open={openAdd} onClose={handleCloseAdd}>
+  //       <DialogTitle>Agregar Usuario</DialogTitle>
+  //       <DialogContent>
+  //         <TextField
+  //           margin="dense"
+  //           label="Nombre"
+  //           type="text"
+  //           fullWidth
+  //           variant="outlined"
+  //           value={newAutor.nombre}
+  //           onChange={(e) =>
+  //             setNewAutor({ ...newAutor, nombre: e.target.value })
+  //           }
+  //         />
+  //         <TextField
+  //           margin="dense"
+  //           label="Usuario"
+  //           type="text"
+  //           fullWidth
+  //           variant="outlined"
+  //           value={newAutor.usuario}
+  //           onChange={(e) =>
+  //             setNewAutor({ ...newAutor, usuario: e.target.value })
+  //           }
+  //         />
+  //       </DialogContent>
+  //       <DialogActions>
+  //         <Button onClick={handleCloseAdd} color="primary">
+  //           Cancelar
+  //         </Button>
+  //         <Button onClick={handleAdd} color="primary">
+  //           Agregar
+  //         </Button>
+  //       </DialogActions>
+  //     </Dialog>
+  //   </Box>
+  // );
 }
