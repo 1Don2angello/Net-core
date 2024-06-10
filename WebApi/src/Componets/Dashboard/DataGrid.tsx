@@ -1,3 +1,10 @@
+/**
+ * Importaciones
+Material-UI: Componentes como Box, Button, Typography, Paper, Dialog, etc., son usados para construir la interfaz de usuario.
+React Hooks: useEffect, useState para manejar el estado y efectos secundarios del componente.
+DataGrid: Un componente de Material-UI que muestra los datos en formato de tabla.
+Axios: Utilizado para hacer solicitudes HTTP a la API.
+ */
 import { Box, Button, Typography, Paper, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
@@ -24,7 +31,14 @@ interface Usuario {
     fkRol: number;
     roles: Rol;
 }
-
+/**
+ * Componente DataGridDemo
+Estados:
+rows: Almacena los datos de los autores.
+dataLoaded, loading: Controlan la visualización de carga y el estado de los datos.
+open, openConfirm, openAdd: Controlan la visibilidad de los diálogos para editar, confirmar eliminación y agregar nuevos autores.
+currentAutor, newAutor, autorToDelete: Manejan el autor actual en edición, un nuevo autor para agregar y el autor a eliminar, respectivamente.
+ */
 export default function DataGridDemo() {
     // Estado para Autores
     const [autorRows, setAutorRows] = useState<Autores[]>([]);
@@ -32,7 +46,16 @@ export default function DataGridDemo() {
     const [autorOpen, setAutorOpen] = useState(false);
     const [autorCurrent, setAutorCurrent] = useState<Autores | null>(null);
     const [autorNew, setAutorNew] = useState<Autores>({ pkAutor: 0, nombre: "", nacionalidad: "" });
+/**
+ * Estados y Hooks de React
+Estados con useState:
 
+rows: Almacena los datos de los autores obtenidos de la API.
+dataLoaded: Indica si los datos se han cargado completamente.
+loading: Controla si se está en proceso de carga de datos.
+open, openConfirm, openAdd: Controlan la visibilidad de diversos diálogos (edición, confirmación de eliminación, y adición de nuevos autores).
+currentAutor, newAutor, autorToDelete: Almacenan información sobre el autor actualmente seleccionado para editar, los detalles del nuevo autor a agregar y el autor seleccionado para eliminar, respectivamente.
+ */
     // Estado para Usuarios
     const [usuarioRows, setUsuarioRows] = useState<Usuario[]>([]);
     const [usuarioLoading, setUsuarioLoading] = useState(true);
@@ -94,6 +117,13 @@ export default function DataGridDemo() {
     };
 
     // Fetch de datos para Usuarios
+/**
+ * Funciones de Interacción con la API
+fetchData: Realiza una solicitud GET a la API para obtener los datos de los autores y los almacena en el estado rows.
+handleDelete: Realiza una solicitud DELETE para eliminar un autor específico basado en su ID y actualiza el estado rows para reflejar los cambios.
+handleEdit: Prepara los datos de un autor seleccionado para su edición y abre el diálogo correspondiente.
+handleOpenConfirm y handleCloseConfirm: Abren y cierran el diálogo de confirmación para la eliminación de un autor, respectivamente.
+ */
     const fetchUsuarios = async () => {
         try {
             const response = await axios.get('https://localhost:7141/Usuario');
@@ -194,12 +224,34 @@ export default function DataGridDemo() {
         }
     };
 
+/**
+* Estados y Hooks de React
+Estados con useState:
+
+rows: Almacena los datos de los autores obtenidos de la API.
+dataLoaded: Indica si los datos se han cargado completamente.
+loading: Controla si se está en proceso de carga de datos.
+open, openConfirm, openAdd: Controlan la visibilidad de diversos diálogos (edición, confirmación de eliminación, y adición de nuevos autores).
+currentAutor, newAutor, autorToDelete: Almacenan información sobre el autor actualmente seleccionado para editar, los detalles del nuevo autor a agregar y el autor seleccionado para eliminar, respectivamente.
+     */
     useEffect(() => {
         fetchAutores();
         fetchUsuarios();
     }, []);
 
     return (
+/**
+ * Columnas del DataGrid
+Define las columnas de la tabla y cómo se deben renderizar, incluyendo botones para editar y eliminar autores.
+
+Funciones de Manejo
+fetchData: Carga los datos de los autores desde la API.
+handleDelete: Elimina un autor especificado.
+handleEdit: Prepara un autor para edición.
+handleOpenConfirm: Abre el diálogo de confirmación para eliminar.
+handleSave: Guarda los cambios realizados a un autor.
+handleAdd: Agrega un nuevo autor a la base de datos.
+ */
         <Box sx={{ padding: '2rem', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
             <Paper sx={{ padding: '2rem', backgroundColor: '#fff', boxShadow: 3, marginBottom: '2rem' }}>
                 <Typography variant="h4" sx={{ marginBottom: '1rem' }}>Gestión de Autores</Typography>
